@@ -1,0 +1,28 @@
+ifndef::attr1,attr2[:foo: bar]
+[id='the-id']
+= A head line
+
+== Another header
+
+In foo{nbsp}3, the `[xxxx]` and  the `foo.yaml` file.
+Blah, blahe{nbsp}3 foo.
+
+[role=foo]
+You could also change some cluster-level settings by editing configuration map (configmap) objects in the OpenShift{nbsp}3 cluster.
+
+* Whatever if `xxx.yaml` file
+* Using `xxx` objects
+
+Gugu foo{nbsp}loop _some words_ and _some others_ xxx, such as:
+
+[compact]
+* foo
+* bar
+
+== {nbsp}
+
+[role="foo"]
+[NOTE]
+====
+Let's _Whatever_ chapter in the _Foo_ at https://whatever.com/foo/bar/
+====

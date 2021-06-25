@@ -1,0 +1,8 @@
+[id='this-is-an-id']
+= A header
+
+Leading to bullets:
+
+* Sample bullet with non{nbsp}breaking space.
+** Double level bullet
+* Back to first

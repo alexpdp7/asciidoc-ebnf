@@ -1,0 +1,32 @@
+document = ifndef? block*
+
+block = attributes? ( header | paragraph | bullets )
+
+attributes = <"["> attribute_definition <"]\n">
+attribute_definition = attribute_name ( <"="> attribute_value )?
+attribute_name = #"[^=\]]+"
+attribute_value = attribute_value_raw | attribute_value_single_quoted | attribute_value_double_quoted
+attribute_value_raw = #"['\"\]]+"
+attribute_value_single_quoted = <"'"> #"[^']+" <"'">
+attribute_value_double_quoted = <'"'> #'[^"]+' <'"'>
+
+header = #"=+ " asciidoc_line <"\n"+>
+
+paragraph = asciidoc_line <"\n"> ( asciidoc_line <"\n"> )* (empty_line+ | eof)
+
+bullets = bullet (empty_line+ bullet)* !bullet (empty_line | eof)
+bullet = #"\*+ " asciidoc_line
+
+asciidoc_line = !attributes !header !bullet asciidoc_token+
+<asciidoc_token> = entity | text | quoted | underscored
+entity = "{nbsp}"
+text = #"[^{_`\n]*" 
+quoted      = <"`"> #"[^`]+" <"`">
+underscored = <"_"> #"[^_]+" <"_">
+
+<empty_line> = <#"\s*\n">
+<eof> = <#'$'>
+
+ifndef = #"ifndef.*\n"
+
+; TODO [NOTE] confuses the parser! looks like attributes
